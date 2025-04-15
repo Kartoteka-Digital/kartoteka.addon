@@ -1,0 +1,13 @@
+{
+    "id": "kartoteka_addon",
+    "name": "Kartoteka Addon",
+    "type": "add-on",
+    "version": "1.2.0",
+    "blender_version": "4.3.0",
+    "license": "GPL-3.0",
+    "maintainers": ["IvanovDemian", "nnivis"],
+    "description": "Kartoteka Addon for Blender",
+    "doc_url": "https://kartoteka.digital/social/docs/addcompany/program_addon/",
+    "tracker_url": "https://github.com/Kartoteka-Digital/kartoteka.addon/issues",
+    "tags": ["modeling", "tools"]
+}
