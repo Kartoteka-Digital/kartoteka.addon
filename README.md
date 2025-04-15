@@ -15,3 +15,6 @@ Kartoteka Addon for Blender.
 - Render settings
 - Skybox settings
 - Compositing settings
+
+## Morph
+- Stretching points by specified parameters and start sizes
