@@ -14,12 +14,14 @@ import os
 from . import (fast_apply, place_pivot, add_modifiers, new_group, helper_panel,
                operators, preview_panel,
                morph,
-               prefs)
+               prefs,
+               custom_properties)
 
 modules = [fast_apply, place_pivot, add_modifiers, new_group, helper_panel,
            operators, preview_panel,
            morph,
-           prefs]
+           prefs,
+           custom_properties]
 
 SAVE_FILE = os.path.join(os.path.expanduser("~"), "blender_render_settings.json")
 
