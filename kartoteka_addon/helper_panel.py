@@ -23,15 +23,15 @@ class VIEW3D_PT_helper_panel(bpy.types.Panel):
         row.prop(context.scene, "use_merge")
         row.operator("object.fast_apply", text="Fast Apply").merge = context.scene.use_merge
 
-        layout.label(text=" ")
+        layout.separator(factor=0.5)
         col1 = layout.column(align=True, heading="Pivot Direction") 
         col1.prop(context.scene, "pivot_dropdown")
         col1.operator("object.place_pivot", text="Place Pivot").direction = context.scene.pivot_dropdown
 
-        layout.label(text=" ")
+        layout.separator(factor=0.5)
         layout.operator("object.add_modifiers", text="Add Modifiers")
 
-        layout.label(text=" ")
+        layout.separator(factor=0.5)
         layout.operator("object.new_group", text="Create New Group")
 
 def add_pivot_dropdown(scene):
@@ -40,7 +40,11 @@ def add_pivot_dropdown(scene):
 
 def register():
     bpy.utils.register_class(VIEW3D_PT_helper_panel)
-    bpy.types.Scene.use_merge = bpy.props.BoolProperty(name="Merge", default=True)
+    bpy.types.Scene.use_merge = bpy.props.BoolProperty(
+        name="Merge",
+        description="Merge By Distance after applying transforms (removes duplicate vertices)",
+        default=True,
+    )
     bpy.types.Scene.pivot_dropdown = bpy.props.EnumProperty(
         name="Direction",
         description="Choose Pivot Direction",

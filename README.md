@@ -9,6 +9,11 @@ Kartoteka Addon for Blender.
 - Add 3 modifiers (Decimate Collapse [on], Decimate Planar [off], Weighted Normals [off])
 - Create New Group
 
+## Materials on the Objects
+- Split by Materials — separate selected meshes into independent objects per material slot
+- UV Scale 1m — auto-scale active UV map to the standard 1 m² texture tile reference (matches a default Blender cube face mapped 0..1)
+- Rename for Tag — rename the single material of selected objects to a fixed tag (default `tag_wall-outside`); objects with 0 or ≥2 materials are skipped
+
 ## Preview
 - Create a 1:1 preview
 - Create a form icon
