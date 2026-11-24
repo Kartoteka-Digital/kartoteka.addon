@@ -86,6 +86,55 @@ class OBJECT_OT_uv_scale_to_meter(bpy.types.Operator):
             bm.free()
 
 
+class OBJECT_OT_uv_world_meter(bpy.types.Operator):
+    """Project UVs in world space at the 1 m² reference: walls go horizontal along the wall and straight up, floors and roofs by X/Y"""
+    bl_idname = "object.uv_world_meter"
+    bl_label = "UV 1m World"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        if context.mode != 'OBJECT':
+            self.report({'WARNING'}, "Choose Object Mode!")
+            return {'CANCELLED'}
+        meshes = [o for o in context.selected_objects if o.type == 'MESH']
+        if not meshes:
+            self.report({'WARNING'}, "No mesh objects selected!")
+            return {'CANCELLED'}
+        for obj in meshes:
+            _world_project(obj)
+        self.report({'INFO'}, f"World UV on {len(meshes)} object(s)")
+        return {'FINISHED'}
+
+
+def _world_project(obj):
+    from mathutils import Vector
+    mesh = obj.data
+    if not mesh.uv_layers:
+        mesh.uv_layers.new(name="UVMap")
+    bm = bmesh.new()
+    try:
+        bm.from_mesh(mesh)
+        uv_layer = bm.loops.layers.uv.active or bm.loops.layers.uv.new()
+        mw = obj.matrix_world
+        nm = mw.to_3x3().inverted_safe().transposed()
+        up = Vector((0.0, 0.0, 1.0))
+        for face in bm.faces:
+            n = (nm @ face.normal).normalized()
+            if abs(n.z) > 0.7:
+                axes = (Vector((1.0, 0.0, 0.0)), Vector((0.0, 1.0 if n.z > 0 else -1.0, 0.0)))
+            else:
+                t = up.cross(n)
+                t.z = 0.0
+                axes = (t.normalized(), up)
+            for loop in face.loops:
+                p = mw @ loop.vert.co
+                loop[uv_layer].uv = (p.dot(axes[0]) * _TARGET_SCALE, p.dot(axes[1]) * _TARGET_SCALE)
+        bm.to_mesh(mesh)
+        mesh.update()
+    finally:
+        bm.free()
+
+
 def _poly_area_3d(pts):
     area = 0.0
     for i in range(1, len(pts) - 1):
@@ -107,7 +156,9 @@ def _poly_area_2d(pts):
 
 def register():
     bpy.utils.register_class(OBJECT_OT_uv_scale_to_meter)
+    bpy.utils.register_class(OBJECT_OT_uv_world_meter)
 
 
 def unregister():
+    bpy.utils.unregister_class(OBJECT_OT_uv_world_meter)
     bpy.utils.unregister_class(OBJECT_OT_uv_scale_to_meter)

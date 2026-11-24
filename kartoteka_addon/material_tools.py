@@ -99,6 +99,7 @@ class VIEW3D_PT_materials_panel(Panel):
         row = layout.row()
         row.scale_y = 1.5
         row.operator("object.uv_scale_to_meter", text="UV Scale 1m", icon='UV')
+        row.operator("object.uv_world_meter", text="UV 1m World", icon='WORLD')
 
         layout.separator(factor=0.5)
 
