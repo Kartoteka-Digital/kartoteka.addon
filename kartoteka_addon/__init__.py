@@ -1,7 +1,7 @@
 bl_info = {
     "name": "Kartoteka Addon",
     "author": "Demian, Nivis",
-    "version": (1, 2, 3),
+    "version": (1, 2, 4),
     "blender": (4, 0, 0),
     "location": "View3D > UI > Kartoteka",
     "description": "Kartoteka Addon for Blender",

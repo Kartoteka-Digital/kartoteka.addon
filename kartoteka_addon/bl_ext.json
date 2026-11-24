@@ -2,7 +2,7 @@
     "id": "kartoteka_addon",
     "name": "Kartoteka Addon",
     "type": "add-on",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "blender_version": "4.3.0",
     "license": "GPL-3.0",
     "maintainers": ["IvanovDemian", "nnivis"],

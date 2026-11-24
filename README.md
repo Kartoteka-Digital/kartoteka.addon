@@ -38,6 +38,7 @@ Blender **4.0+**; ships `bl_ext.json` for the 4.2 extension format as well.
 ### Materials on the Objects
 - **Split by Materials** — separate selected meshes into independent objects per material slot
 - **UV Scale 1 m** — scale the active UV map to the 1 m² texture-tile reference (a default Blender cube face mapped 0..1)
+- **UV 1m World** — project UVs in world space at the same 1 m² reference: walls run horizontally along the wall and straight up, floors and roofs by X/Y, so bricks never end up sideways or upside down
 - **Rename for Tag** — rename the single material of selected objects to a fixed tag (default `tag_wall-outside`); objects with 0 or ≥ 2 materials are skipped
 
 ### Preview
