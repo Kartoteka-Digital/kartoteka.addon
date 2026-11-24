@@ -1,7 +1,7 @@
 bl_info = {
     "name": "Kartoteka Addon",
     "author": "Demian, Nivis",
-    "version": (1, 2, 4),
+    "version": (1, 2, 5),
     "blender": (4, 0, 0),
     "location": "View3D > UI > Kartoteka",
     "description": "Kartoteka Addon for Blender",
@@ -17,7 +17,8 @@ from . import (fast_apply, place_pivot, add_modifiers, new_group, helper_panel,
                prefs,
                custom_properties,
                uv_scale,
-               material_tools)
+               material_tools,
+               quest_check)
 
 modules = [fast_apply, place_pivot, add_modifiers, new_group, helper_panel,
            operators, preview_panel,
@@ -25,7 +26,8 @@ modules = [fast_apply, place_pivot, add_modifiers, new_group, helper_panel,
            prefs,
            custom_properties,
            uv_scale,
-           material_tools]
+           material_tools,
+           quest_check]
 
 SAVE_FILE = os.path.join(os.path.expanduser("~"), "blender_render_settings.json")
 

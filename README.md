@@ -41,6 +41,12 @@ Blender **4.0+**; ships `bl_ext.json` for the 4.2 extension format as well.
 - **UV 1m World** — project UVs in world space at the same 1 m² reference: walls run horizontally along the wall and straight up, floors and roofs by X/Y, so bricks never end up sideways or upside down
 - **Rename for Tag** — rename the single material of selected objects to a fixed tag (default `tag_wall-outside`); objects with 0 or ≥ 2 materials are skipped
 
+### Quest Check
+Panel that checks the selected objects (or the whole scene) for Meta Quest:
+- **Draw calls**, small objects and texture memory on Quest
+- **Same material, separate objects** — click a row to select those objects, merge them per material or **Merge All by Material**
+- **Not power of two** textures (not compressed on Quest) — click to select the objects using the image, resize to the nearest power of two or pick other sizes from the dropdowns, or **Resize All to Nearest**. UVs and tiling stay the same; resized images are packed into the .blend
+
 ### Preview
 - **Create a 1:1 preview** and **Create a form icon (3:4)** — EEVEE Next render with a chosen camera framing and distance
 - **Render / Skybox / Compositing settings** — HDRI, rotation, blur, output path
@@ -58,7 +64,7 @@ kartoteka_addon/
 ├── __init__.py            bl_info, registration
 ├── helper_panel.py        Helper panel
 ├── fast_apply.py place_pivot.py add_modifiers.py new_group.py
-├── material_tools.py uv_scale.py
+├── material_tools.py uv_scale.py quest_check.py
 ├── preview_panel.py render_utils.py camera_utils.py skybox_manager.py compositing_manager.py
 ├── morph.py
 ├── custom_properties.py
